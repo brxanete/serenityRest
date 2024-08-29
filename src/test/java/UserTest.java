@@ -1,5 +1,6 @@
 import models.Datum;
 import net.serenitybdd.junit.runners.SerenityRunner;
+import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import org.junit.Test;
@@ -27,9 +28,10 @@ public class UserTest {
 
         // Iniciamos acciones usando las tareas ya creadas.
         bryan.attemptsTo(
-                GetUserTask.fromPage(3)
+                GetUserTask.fromPage(1)
 
         );
+
 
         // Realizamos aserciones usando las questions ya creadas.
         bryan.should(
@@ -37,14 +39,8 @@ public class UserTest {
         );
 
         // Realizamos validaciones puntuales en la data, que el usuario no sea nulo y que el correo coincida con el indicado.
-
-        Datum user = new GetUserQuestion()
-                .answeredBy(bryan) // invoca la implementacion de la pregunta permitiendo al actor acceder a la ultima respuesta HTTP
-                .getData() //
-                .stream()
-                .filter(x -> x.getId() == 1)
-                .findFirst()
-                .orElse(null);
+        // invoca la implementacion de la pregunta permitiendo al actor acceder a la ultima respuesta HTTP
+        Datum user = new GetUserQuestion().answeredBy(bryan).getData().stream().filter(x -> x.getId() == 1).findFirst().orElse(null);
 
         bryan.should(
                 seeThat("Usuario no es nulo", act -> user, notNullValue())
