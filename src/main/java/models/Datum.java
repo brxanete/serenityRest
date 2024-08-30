@@ -8,6 +8,7 @@ public class Datum {
     private String firstName;
     private String lastName;
     private String avatar;
+    private String password;
 
     public Integer getId() {
         return id;
@@ -47,5 +48,13 @@ public class Datum {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

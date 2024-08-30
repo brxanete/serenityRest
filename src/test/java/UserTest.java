@@ -1,4 +1,6 @@
 import models.Datum;
+import models.RegisterUserInfo;
+import models.UpdateUserInfo;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
@@ -9,6 +11,7 @@ import questions.GetUserQuestion;
 import questions.ResponseCodeQuestion;
 import tasks.GetUserTask;
 import tasks.RegisterUserTask;
+import tasks.UpdateUserTask;
 
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -58,16 +61,23 @@ public class UserTest {
     public void registerUserTest() {
         Actor bryan = Actor.named("Bryan").whoCan(CallAnApi.at(restURL));
 
-       // Establecemos la informacion que le vamos a pasar al modelo
-        String userInfo = "{\n" +
-                "      \"name\": \"morpheus\",\n" +
-                "    \"job\": \"leader\",\n" +
-                "    \"email\": \"eve.holt@reqres.in\",\n" +
-                "    \"password\": \"pistol\"\n" +
-                "}";
+        RegisterUserInfo registerUserInfo = new RegisterUserInfo();
+
+        registerUserInfo.setName("morpheus");
+        registerUserInfo.setJob("leader");
+        registerUserInfo.setEmail("eve.holt@reqres.in");
+        registerUserInfo.setPassword("password123");
+
+
+//        String userInfo = "{\n" +
+//                "      \"name\": \"morpheus\",\n" +
+//                "    \"job\": \"leader\",\n" +
+//                "    \"email\": \"eve.holt@reqres.in\",\n" +
+//                "    \"password\": \"pistol\"\n" +
+//                "}";
 
         bryan.attemptsTo(
-                RegisterUserTask.withInfo(userInfo)
+                RegisterUserTask.withInfo(registerUserInfo)
         );
 
         bryan.should(
@@ -79,6 +89,33 @@ public class UserTest {
 
 
     }
+
+    @Test
+    public void updateUserTest() {
+        Actor bryan = Actor.named("Bryan").whoCan(CallAnApi.at(restURL));
+
+        UpdateUserInfo updateUserInfo = new UpdateUserInfo();
+
+        updateUserInfo.setName("morpheusUpdated");
+        updateUserInfo.setJob("leaderUpdated");
+        updateUserInfo.setEmail("wrongMail@gmail.in");
+        updateUserInfo.setPassword("updated123");
+
+
+        bryan.attemptsTo(
+                UpdateUserTask.withInfo(updateUserInfo)
+        );
+
+        bryan.should(
+                seeThat("Actualizacion de usuario correcta", ResponseCodeQuestion.was(), equalTo(200))
+        );
+
+
+
+
+
+    }
+
 
 
 
