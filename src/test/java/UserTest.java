@@ -1,3 +1,4 @@
+import facts.NetflixPlans;
 import models.Datum;
 import models.RegisterUserInfo;
 import models.UpdateUserInfo;
@@ -85,9 +86,6 @@ public class UserTest {
         );
 
 
-
-
-
     }
 
     @Test
@@ -111,13 +109,17 @@ public class UserTest {
         );
 
 
+    }
 
+    @Test
+    public void factTest() {
+        Actor bryan = Actor.named("Bryan").whoCan(CallAnApi.at(restURL)
+        );
+
+        bryan.has(NetflixPlans.toViewSeries());
 
 
     }
-
-
-
 
 
 }
