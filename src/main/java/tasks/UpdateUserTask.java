@@ -1,6 +1,7 @@
 package tasks;
 
 
+import interactions.Patch;
 import interactions.Put;
 import io.restassured.http.ContentType;
 import net.serenitybdd.screenplay.Actor;
@@ -28,7 +29,7 @@ public class UpdateUserTask implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Put.to("/users/2")
+                Patch.to("/users/2") //or patch
                         .with(requestSpecification -> requestSpecification
                                 .contentType(ContentType.JSON)
                                 .body(userInfo)

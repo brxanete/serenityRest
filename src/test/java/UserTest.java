@@ -1,5 +1,6 @@
 import facts.NetflixPlans;
 import models.Datum;
+import models.DeleteUserInfo;
 import models.RegisterUserInfo;
 import models.UpdateUserInfo;
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import questions.GetUserQuestion;
 import questions.ResponseCodeQuestion;
+import tasks.DeleteUserTask;
 import tasks.GetUserTask;
 import tasks.RegisterUserTask;
 import tasks.UpdateUserTask;
@@ -112,12 +114,29 @@ public class UserTest {
     }
 
     @Test
+    public void deleteUserTest() {
+        Actor bryan = Actor.named("Bryan").whoCan(CallAnApi.at(restURL));
+
+
+        bryan.attemptsTo(
+                new DeleteUserTask()
+
+        );
+
+        bryan.should(
+                seeThat("Error de eliminacion no content", ResponseCodeQuestion.was(), equalTo(204))
+        );
+
+
+    }
+
+
+    @Test
     public void factTest() {
         Actor bryan = Actor.named("Bryan").whoCan(CallAnApi.at(restURL)
         );
 
         bryan.has(NetflixPlans.toViewSeries());
-
 
     }
 
