@@ -117,17 +117,12 @@ public class UserTest {
     public void deleteUserTest() {
         Actor bryan = Actor.named("Bryan").whoCan(CallAnApi.at(restURL));
 
-
         bryan.attemptsTo(
                 new DeleteUserTask()
-
         );
-
         bryan.should(
                 seeThat("Error de eliminacion no content", ResponseCodeQuestion.was(), equalTo(204))
         );
-
-
     }
 
 
