@@ -29,7 +29,7 @@ public class UpdateUserTask implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Patch.to("/users/2") //or patch
+                Put.to("/users/2") //or patch
                         .with(requestSpecification -> requestSpecification
                                 .contentType(ContentType.JSON)
                                 .body(userInfo)
