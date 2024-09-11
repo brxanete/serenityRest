@@ -133,6 +133,10 @@ public class UserTest {
 
         bryan.has(NetflixPlans.toViewSeries());
 
+        bryan.should(
+                seeThat("Validacion planes", ResponseCodeQuestion.was(), equalTo(200))
+        );
+
     }
 
 
