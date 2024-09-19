@@ -5,7 +5,7 @@ public class UpdateUserInfo {
     private String name;
     private String email;
     private String password;
-    private String job;
+    private String job; 
 
 
     public String getName() {
