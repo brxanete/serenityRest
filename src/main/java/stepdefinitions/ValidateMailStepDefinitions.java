@@ -35,19 +35,11 @@ public class ValidateMailStepDefinitions {
     @Then("El debe validar que el correo sea el correcto")
     public void el_debe_validar_que_el_correo_sea_el_correcto() {
 
-        Datum user = new GetUserQuestion().answeredBy(bryan).getData().stream()
-                .filter(x -> x.getId() == 1)
-                .findFirst()
-                .orElse(null);
+        Datum user = new GetUserQuestion().answeredBy(bryan).getData().stream().filter(x -> x.getId() == 1).findFirst().orElse(null);
 
-        if (user != null) {
-            System.out.println("Datos del usuario: " + user.toString());
+        bryan.should(
+                seeThat("Email de usuario", act -> user.getEmail(), equalTo("george.bluth@reqres.in"))
+        );
 
-            bryan.should(
-                    seeThat("Email de usuario", act -> user.getEmail(), equalTo("george.bluth@reqres.in"))
-            );
-        } else {
-            System.out.println("Usuario no encontrado.");
-        }
     }
 }
