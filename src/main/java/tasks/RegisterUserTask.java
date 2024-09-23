@@ -13,7 +13,6 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class RegisterUserTask implements Task {
 
-    //Object model
     private final Object userInfo;
 
     public RegisterUserTask(Object userInfo) {
