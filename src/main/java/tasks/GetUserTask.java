@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.Task;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class GetUserTask implements Task {
+
     private final int page;
 
     public GetUserTask(int page) {

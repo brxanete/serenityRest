@@ -1,7 +1,7 @@
 package tasks;
 
 
-import interactions.Patch;
+
 import interactions.Put;
 import io.restassured.http.ContentType;
 import net.serenitybdd.screenplay.Actor;

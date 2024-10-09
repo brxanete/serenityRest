@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "src/test/resources/features",
         glue = "stepdefinitions",
         plugin = {"pretty", "summary"},
-        tags = "@ApiTest")
+        tags = "@MailValidate")
 public class Runner {
+
 
 }
