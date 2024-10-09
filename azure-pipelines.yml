@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean verify'
+    options: '-DskipTests=false'
+  displayName: 'Build and Execute Tests'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/target/failsafe-reports/*.xml'
+  displayName: 'Publish Test Results'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '**/target/site/serenity'
+    artifact: 'Serenity Reports'
+    publishLocation: 'pipeline'
+  displayName: 'Publish Serenity Reports'
