@@ -21,6 +21,7 @@ public class Put extends RestInteraction {
         rest().log().all().put(as(actor).resolve(resource)).then().log().all();
     }
 
+
     public static Put to(String resource) {
         return instrumented(Put.class, resource);
     }
