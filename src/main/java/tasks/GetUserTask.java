@@ -1,14 +1,16 @@
 package tasks;
 
+import interactions.Get;
 import io.restassured.http.ContentType;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.rest.interactions.Get;
+
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class GetUserTask implements Task {
+
     private final int page;
 
     public GetUserTask(int page) {
@@ -23,8 +25,7 @@ public class GetUserTask implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Get.resource("/users?page=2")
-                        .with(requestSpecification -> requestSpecification.contentType(ContentType.JSON).header("header1", "value1")
+                Get.resource("/users?page=1").with(requestSpecification -> requestSpecification.contentType(ContentType.JSON).header("header1", "value1")
                         ));
     }
 }
