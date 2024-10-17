@@ -20,6 +20,7 @@ public class Put extends RestInteraction {
     public <T extends Actor> void performAs(T actor) {
         rest().log().all().put(as(actor).resolve(resource)).then().log().all();
     }
+    
 
 
     public static Put to(String resource) {

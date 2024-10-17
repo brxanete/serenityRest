@@ -11,6 +11,7 @@ import java.util.List;
 public class NetflixPlans implements Fact {
 
     //Hechos acerca de un actor, caracteristicas o informacion relevante
+
     private String plansInfo;
 
     public static NetflixPlans toViewSeries() {
